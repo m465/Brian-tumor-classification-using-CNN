@@ -1,160 +1,131 @@
-🧠 Brain Tumor Classification using CNN
-📌 Overview
-This project implements a Convolutional Neural Network (CNN) to classify brain MRI images into four categories:
+# 🧠 Brain Tumor Classification using Deep Learning
 
+A deep learning-based image classification system that detects and classifies brain tumors from MRI scans using Convolutional Neural Networks (CNNs).
 
-Glioma
+---
 
+## 📌 Project Overview
 
-Meningioma
+Brain tumors can be life-threatening if not diagnosed early. This project builds a CNN model to classify brain MRI images into four categories:
 
+- **Glioma Tumor**
+- **Meningioma Tumor**
+- **Pituitary Tumor**
+- **No Tumor**
 
-Pituitary Tumor
+The model is implemented using **PyTorch** with a complete training and evaluation pipeline including preprocessing, augmentation, validation, and testing.
 
+---
 
-No Tumor
+## 🗂 Dataset
 
+- **Source:** Kaggle Brain Tumor MRI Dataset  
+- **Number of Classes:** 4  
+- **Image Size:** 224 × 224  
+- **Dataset Loader:** `torchvision.datasets.ImageFolder`
 
-The model is trained using PyTorch with a complete preprocessing, augmentation, and evaluation pipeline.
+The dataset is divided into:
 
-📂 Dataset
+- Training Set  
+- Testing Set  
+- Validation Split (created from training data)
 
+---
 
-Source: Kaggle Brain Tumor MRI Dataset
+## ⚙️ Features
 
+- End-to-end CNN training pipeline
+- Dataset normalization using computed mean & standard deviation
+- Data augmentation (Random Rotation + Horizontal Flip)
+- Custom CNN architecture built from scratch
+- Batch Normalization for stable convergence
+- Dropout layers to reduce overfitting
+- GPU support (CUDA auto-detection)
+- Training & validation accuracy tracking
 
-Images resized to 224×224
+---
 
+## 🏗 Model Architecture
 
-Training & Testing folders used
+The model consists of:
 
+- 4 Convolutional Layers
+- Batch Normalization
+- ReLU Activation
+- MaxPooling
+- Dropout Layers
+- Fully Connected Layers
+- Output Layer (4 Classes)
 
-Classes automatically extracted using ImageFolder
+---
 
+### 🔄 Architecture Flow
 
+Input (3×224×224)
+- Conv(3 → 32) → BatchNorm → ReLU → MaxPool
+- Conv(32 → 64) → BatchNorm → ReLU → MaxPool
+- Conv(64 → 128) → BatchNorm → ReLU → MaxPool
+- Conv(128 → 256) → BatchNorm → ReLU
+- Dropout
+- Fully Connected (→ 512)
+- Dropout
+- Fully Connected (→ 4)
+---
 
-⚙️ Project Pipeline
-1️⃣ Data Preprocessing
+---
 
+## 🧪 Training Configuration
 
-Resizing images to 224x224
+| Parameter        | Value |
+|------------------|--------|
+| Framework        | PyTorch |
+| Loss Function    | CrossEntropyLoss |
+| Optimizer        | Adam |
+| Learning Rate    | 0.001 |
+| Device           | CPU / GPU (Auto-detected) |
 
+---
 
-Dataset mean & standard deviation calculation
+## 📊 Evaluation Metrics
 
+- Training Accuracy  
+- Validation Accuracy  
+- Test Accuracy  
 
-Normalization
+The model is evaluated on unseen MRI scans to measure generalization performance.
 
+---
 
-Data augmentation:
+## 🚀 How to Run
 
+### 1️⃣ Install Dependencies
 
-Random Horizontal Flip
+```bash
+pip install torch torchvision matplotlib numpy
+```
 
+## 🧠 Key Learnings
 
-Random Rotation (15°)
+- Designing CNN architectures from scratch  
+- Implementing dataset normalization and augmentation  
+- Preventing overfitting using Dropout and Batch Normalization  
+- Building a complete PyTorch training pipeline  
 
+---
 
+## 🔮 Future Improvements
 
+- Add Confusion Matrix and Classification Report  
+- Implement Transfer Learning (ResNet / EfficientNet)  
+- Deploy using FastAPI  
+- Build a Streamlit web interface for real-time predictions  
 
-2️⃣ Train-Validation Split
+---
 
+## 🛠 Tech Stack
 
-80% Training
-
-
-20% Validation
-
-
-3️⃣ Model Architecture
-Custom CNN Architecture:
-
-
-4 Convolutional layers
-
-
-Batch Normalization
-
-
-MaxPooling
-
-
-Dropout (0.25 & 0.4)
-
-
-Fully Connected Layer (512 units)
-
-
-Output Layer (4 classes)
-
-
-Activation Function: ReLU
-Loss Function: CrossEntropyLoss
-Optimizer: Adam (lr=0.001)
-
-🏗 Model Architecture Summary
-Conv(3 → 32) → BN → ReLU → MaxPool
-Conv(32 → 64) → BN → ReLU → MaxPool
-Conv(64 → 128) → BN → ReLU → MaxPool
-Conv(128 → 256) → BN → ReLU
-Dropout
-FC(256×14×14 → 512)
-Dropout
-FC(512 → 4)
-
-📊 Evaluation
-
-
-Training Accuracy
-
-
-Validation Accuracy
-
-
-Final Test Accuracy
-
-
-GPU support (CUDA if available)
-
-
-
-🚀 How to Run
-# Install dependencies
-pip install torch torchvision matplotlib kaggle
-
-# Run notebook
-jupyter notebook Brain_tumor_classification.ipynb
-
-
-🛠 Tech Stack
-
-
-Python
-
-
-PyTorch
-
-
-Torchvision
-
-
-NumPy
-
-
-Matplotlib
-
-
-
-🎯 Key Learnings
-
-
-Implementing CNN architecture from scratch
-
-
-Dataset normalization & augmentation
-
-
-Preventing overfitting using Dropout & BatchNorm
-
-
-Building full training + evaluation pipeline
+- Python  
+- PyTorch  
+- Torchvision  
+- NumPy  
+- Matplotlib  
